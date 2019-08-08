@@ -26,10 +26,12 @@ suite(function(env) {
 
 
         it('Shopping cart has Delete button', async function() {
-            await page.DeleteItem();
+            let deletebutton = await driver.findElement(page.locators.deleteButton);
+            assert(deletebutton.isDisplayed());
         });
 
         it('Item is removed from basket/cart, Banner must display ‘Your shopping cart is empty', async function() {
+            await page.DeleteItem();
             let cart = await driver.findElement(page.locators.basketMessage);
             let text = await cart.getText();
             assert(text.includes(emptyBasket));
