@@ -27,8 +27,6 @@ class ShoppingCart {
       await this.driver.sleep(2000);
   }
   async DeleteItem() {
-      this.driver.get(url2);
-      await this.driver.sleep(2000);
       this.driver.findElement(this.locators.deleteButton).click();
       await this.driver.sleep(2000);
   }
@@ -38,4 +36,3 @@ class ShoppingCart {
 
 
 module.exports = ShoppingCart;
-
