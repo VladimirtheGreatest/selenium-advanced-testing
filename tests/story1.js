@@ -10,6 +10,7 @@ suite(function(env) {
         this.timeout(10000);
         let driver;
         let page;
+        let emptyBasket = "Your shopping cart is empty."
 
         before(async function() {
             driver = await env.builder().build();
@@ -18,16 +19,23 @@ suite(function(env) {
         });
 
 
+        it('Fill the basket so we can test the Delete button', async function() {
+            await page.addToCart();
+            await page.Checkout();
+        });
+
 
         it('Shopping cart has Delete button', async function() {
+            await page.DeleteItem();
         });
 
-        it('Item is removed from basket/cart', async function() {
+        it('Item is removed from basket/cart, Banner must display ‘Your shopping cart is empty', async function() {
+            let cart = await driver.findElement(page.locators.basketMessage);
+            let text = await cart.getText();
+            assert(text.includes(emptyBasket));
         });
 
 
-        it('Banner must display ‘Your shopping cart is empty.’', async function() {
-        });
 
 
         after(async function() {
