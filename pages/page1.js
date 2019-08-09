@@ -22,7 +22,11 @@ class ShoppingCart {
       PriceRange: By.css('#layered_price_range'),
       ProductOutsideTheRange: By.xpath('//*[@id="center_column"]/ul/li[1]/div/div[2]/div[1]/span[1]'),
       Loader: By.xpath('//*[@id="center_column"]/ul/p/img'),
-      ChangingPrice: By.xpath('//*[@id="layered_price_slider"]/div')
+      ChangingPrice: By.xpath('//*[@id="layered_price_slider"]/div'),
+      SignIn: By.css('#header > div.nav > div > div > nav > div.header_user_info > a'),
+      ErrorForm: By.id('create_account_error'),
+      EmailInput: By.id('email_create'),
+      CreateAccount: By.css('#create-account_form > div > div.submit')
     }
   }
 
@@ -58,6 +62,20 @@ class ShoppingCart {
       //await actions.dragAndDrop(draggable, 17, 17).perform(); The pixels values change with screen resolution and browser size. This method is hence not reliable and not widely used.
       await this.driver.sleep(3000);
   }
+  async CreateAccount() {
+
+  }
+  async CreateAccountError() {
+
+  }
+
+  async FormInputSuccess() {
+
+  }
+  async FormInputError() {
+
+  }
+
 
 }
 
