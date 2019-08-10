@@ -12,7 +12,6 @@ class ShoppingCart {
       basketMessage : By.css('#center_column > p'),
       addToCart : By.xpath('//*[@id="homefeatured"]/li[1]/div/div[2]/div[2]/a[1]'),
       Checkout : By.xpath('//*[@id="layer_cart"]/div[1]/div[2]/div[4]/a'),
-      //BasketItems : By.xpath('//*[@id="summary_products_quantity"]'),
       //navigation
       WomanNav: By.xpath('//*[@id="block_top_menu"]/ul/li[1]/a'),
       SubNav: By.xpath('//*[@id="block_top_menu"]/ul/li[1]/ul'),
@@ -72,7 +71,7 @@ class ShoppingCart {
   async MouseOver() {
       let womanNav = await this.driver.findElement(this.locators.WomanNav);
       const actions = await this.driver.actions({bridge: true});
-      //await this.driver.actions.moveToElement(womanNav).perform();  this function doesnt work on my pc for mysterious reasons :(
+      //await actions.moveToElement(womanNav).perform();  this function doesnt work on my pc for mysterious reasons :(
       await actions.move({duration:2000,origin:womanNav,x:0,y:0}).perform();
       await this.driver.sleep(2000);
   }
