@@ -7,26 +7,44 @@ class ShoppingCart {
   constructor(driver){
     this.driver = driver;
     this.locators = {
+      //shopping cart
       deleteButton :By.xpath('//*[@id="product_1_1_0_0"]/td[7]/div/a'),
       basketMessage : By.css('#center_column > p'),
       addToCart : By.xpath('//*[@id="homefeatured"]/li[1]/div/div[2]/div[2]/a[1]'),
       Checkout : By.xpath('//*[@id="layer_cart"]/div[1]/div[2]/div[4]/a'),
-      BasketItems : By.xpath('//*[@id="summary_products_quantity"]'),
+      //BasketItems : By.xpath('//*[@id="summary_products_quantity"]'),
+      //navigation
       WomanNav: By.xpath('//*[@id="block_top_menu"]/ul/li[1]/a'),
       SubNav: By.xpath('//*[@id="block_top_menu"]/ul/li[1]/ul'),
       SummerDressesLink: By.xpath('//*[@id="block_top_menu"]/ul/li[1]/ul/li[2]/ul/li[3]/a'),
       SummerMenu: By.css('#center_column > h1 > span.cat-name'),
       SummerMenu2: By.css('#columns > div.breadcrumb.clearfix > span:nth-child(6)'),
+      //slider
       Slider: By.xpath('//*[@id="layered_price_slider"]/div'),
       DropSlider: By.xpath('//*[@id="layered_price_slider"]/a[2]'),
       PriceRange: By.css('#layered_price_range'),
       ProductOutsideTheRange: By.xpath('//*[@id="center_column"]/ul/li[1]/div/div[2]/div[1]/span[1]'),
       Loader: By.xpath('//*[@id="center_column"]/ul/p/img'),
       ChangingPrice: By.xpath('//*[@id="layered_price_slider"]/div'),
+      //form
       SignIn: By.css('#header > div.nav > div > div > nav > div.header_user_info > a'),
       ErrorForm: By.id('create_account_error'),
+      ErrorFormInput: By.css('.alert'),
       EmailInput: By.id('email_create'),
-      CreateAccount: By.css('#create-account_form > div > div.submit')
+      CreateAccount: By.css('#create-account_form > div > div.submit'),
+      FirstName : By.id('customer_firstname'),
+      LastName : By.id('customer_lastname'),
+      Password : By.id('passwd'),
+      Address : By.id('address1'),
+      City : By.id('city'),
+      State: By.css('#id_state > option:nth-child(6)'),
+      Postcode: By.id('postcode'),
+      Country: By.id('id_country'),
+      Phone: By.id('phone_mobile'),
+      Alias: By.id('alias'),
+      RegisterForm: By.id('submitAccount'),
+      InfoAccount: By.css('#center_column > p'),
+      AccountName: By.css('#header > div.nav > div > div > nav > div:nth-child(1) > a > span')
     }
   }
 
@@ -62,20 +80,33 @@ class ShoppingCart {
       //await actions.dragAndDrop(draggable, 17, 17).perform(); The pixels values change with screen resolution and browser size. This method is hence not reliable and not widely used.
       await this.driver.sleep(3000);
   }
-  async CreateAccount() {
-
+  async CreateAccount(input) {
+    await this.driver.findElement(this.locators.EmailInput).click();
+    await this.driver.findElement(this.locators.EmailInput).sendKeys(input);
+    await this.driver.findElement(this.locators.CreateAccount).click();
+    await this.driver.sleep(2000);
   }
-  async CreateAccountError() {
-
+  async RegistrationForm(firstname, lastname, password, address, city, postcode, phone) {
+    await this.driver.findElement(this.locators.FirstName).click();
+    await this.driver.findElement(this.locators.FirstName).sendKeys(firstname);
+    await this.driver.findElement(this.locators.LastName).click();
+    await this.driver.findElement(this.locators.LastName).sendKeys(lastname);
+    await this.driver.findElement(this.locators.Password).click();
+    await this.driver.findElement(this.locators.Password).sendKeys(password);
+    await this.driver.findElement(this.locators.Address).click();
+    await this.driver.findElement(this.locators.Address).sendKeys(address);
+    await this.driver.findElement(this.locators.City).click();
+    await this.driver.findElement(this.locators.City).sendKeys(city);
+    await this.driver.findElement(this.locators.State).click();
+    await this.driver.findElement(this.locators.Postcode).click();
+    await this.driver.findElement(this.locators.Postcode).sendKeys(postcode);
+    await this.driver.findElement(this.locators.Phone).click();
+    await this.driver.findElement(this.locators.Phone).sendKeys(phone);
+    await this.driver.findElement(this.locators.RegisterForm).click();
   }
-
-  async FormInputSuccess() {
-
+  async SignIn() {
+      await this.driver.findElement(this.locators.SignIn).click();
   }
-  async FormInputError() {
-
-  }
-
 
 }
 
