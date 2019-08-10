@@ -44,7 +44,13 @@ class ShoppingCart {
       Alias: By.id('alias'),
       RegisterForm: By.id('submitAccount'),
       InfoAccount: By.css('#center_column > p'),
-      AccountName: By.css('#header > div.nav > div > div > nav > div:nth-child(1) > a > span')
+      AccountName: By.css('#header > div.nav > div > div > nav > div:nth-child(1) > a > span'),
+      //map
+      OurStore:By.css('#block_various_links_footer > ul > li:nth-child(4) > a'),
+      Map: By.css('#map > div > div > div:nth-child(1)'),
+      DismissButton: By.xpath('//*[@id="map"]/div[2]/table/tr/td[2]/button'),
+      DragMapHere: By.css('#footer > div > section.bottom-footer.col-xs-12 > div > a'),
+      ZoomOut: By.xpath('//*[@id="map"]/div/div/div[8]/div[1]/div/button[2]')
     }
   }
 
@@ -106,6 +112,35 @@ class ShoppingCart {
   }
   async SignIn() {
       await this.driver.findElement(this.locators.SignIn).click();
+  }
+  async ScrollMap() {
+      await this.driver.findElement(this.locators.DismissButton).click();
+      await this.driver.sleep(1000);
+      await this.driver.findElement(this.locators.ZoomOut).click();
+      await this.driver.sleep(1000);
+      await this.driver.findElement(this.locators.ZoomOut).click();
+      await this.driver.sleep(1000);
+      let dragMap = await this.driver.findElement(this.locators.Map);
+      await this.driver.actions().move({duration:500,origin:dragMap,x:100,y:-200}).perform();
+      await this.driver.actions().doubleClick().perform();
+      await this.driver.actions().move({duration:500,origin:dragMap,x:0,y:-200}).perform();
+      await this.driver.actions().doubleClick().perform();
+      await this.driver.actions().move({duration:500,origin:dragMap,x:-100,y:0}).perform();
+      await this.driver.actions().doubleClick().perform();
+      await this.driver.actions().move({duration:500,origin:dragMap,x:-100,y:-50}).perform();
+      await this.driver.actions().doubleClick().perform();
+      await this.driver.sleep(1000);
+
+
+
+      //This alternative click and hold the mouse on the map and press up arrow key, unfortunately clickAndHold function doesnt work for me :(
+      //await actions.move({duration:2000,origin:dragMap,x:0,y:0}).perform();
+    //  await this.driver.actions().clickAndHold().perform();
+      //await this.driver.actions().keyDown(Key.UP).perform();  (press hold as many times as possible to get into West Palm Beach)
+
+      //another alternative with the control+mousewheelbutton, unfortunately cant find mousewheel method
+      //await this.driver.actions().keyDown(Key.CONTROL).perform();
+      //await this.driver.(mousewheel method or action)
   }
 
 }
