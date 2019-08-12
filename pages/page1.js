@@ -25,6 +25,7 @@ class ShoppingCart {
       ProductOutsideTheRange: By.xpath('//*[@id="center_column"]/ul/li[1]/div/div[2]/div[1]/span[1]'),
       Loader: By.xpath('//*[@id="center_column"]/ul/p/img'),
       ChangingPrice: By.xpath('//*[@id="layered_price_slider"]/div'),
+       ContentPrice: By.css('.price'),
       //form
       SignIn: By.css('#header > div.nav > div > div > nav > div.header_user_info > a'),
       ErrorForm: By.id('create_account_error'),
