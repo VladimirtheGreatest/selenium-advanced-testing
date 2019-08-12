@@ -40,6 +40,22 @@ suite(function(env) {
           var sliceCurrencySign = await text.slice(1,5)
           var value = await parseFloat(sliceCurrencySign)
           assert(value <= 20 && value >= 16);  //this test will fail since items are not loading properly therefore no search results are updated
+            
+            //this is is a possible playaround considering search options would be loading properly
+            //let searchResults = await driver.findElements(page.locators.ContentPrice);      //this will find elements with our search results
+            //await searchResults.forEach(async function(element) {
+               // try {                                                        //we will loop through the array and slice the string we dont need
+                //let text = await element.getText();
+               // let sliced = await text.slice(1,6);                      // then we will convert it into float so we can find out if our search results are within the price range
+                //let value = await parseFloat(sliced)
+               // updatedResults = await value <= 20 && value >= 16 && value !== NaN ? true : false;  //checking if everything displayed is within the range and not undefined
+                //assert(updatedResults !== false) //if returned search option is within the range it should return true
+               // }
+                //catch {
+                //  console.log('items not displayed withing the range');
+               // }
+            
+        
         });
 
 
